@@ -11,6 +11,8 @@ try:
 except Exception as e:
     data = []
     print(f"Error loading data: {e}")
+for i in data:
+    print(i['name'])
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -21,9 +23,9 @@ class handler(BaseHTTPRequestHandler):
             # Extract 'name' query params (always a list)
             requested_names = query_params.get("name", [])
             marks=[]
-            for name in requested_names:
-                if data['name'] ==name:
-                    marks.append(data['marks'])
+            for name in data:
+                if name['name'] in requested_names:
+                    marks.append(name['marks'])
 
 
             # Extract marks for matching names
