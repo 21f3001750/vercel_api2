@@ -20,9 +20,14 @@ class handler(BaseHTTPRequestHandler):
 
             # Extract 'name' query params (always a list)
             requested_names = query_params.get("name", [])
+            marks=[]
+            for name in requested_names:
+                if data['name'] ==name:
+                    marks.append(data['marks'])
+
 
             # Extract marks for matching names
-            marks = [entry["marks"] for entry in data if entry["name"] in requested_names]
+            # marks = [entry["marks"] for entry in data if entry["name"] in requested_names]
 
             response = {"marks": marks}
 
