@@ -15,6 +15,11 @@ for i in data:
     print(i['name'])
 
 class handler(BaseHTTPRequestHandler):
+    def _send_cors_headers(self):
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET,POST,OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "x-api-key,Content-Type")
+
     def do_GET(self):
         try:
             parsed_path = urlparse(self.path)
